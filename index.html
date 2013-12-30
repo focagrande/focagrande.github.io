@@ -27,10 +27,34 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h3>
-<a name="mchain---markov-chain-generator" class="anchor" href="#mchain---markov-chain-generator"><span class="octicon octicon-link"></span></a>mchain - Markov Chain Generator</h3>
+        <h2>
+<a name="mchain---text-generator-using-markov-chains" class="anchor" href="#mchain---text-generator-using-markov-chains"><span class="octicon octicon-link"></span></a>mchain - text generator using Markov chains</h2>
 
-<p>mchain is a web application which provides human readable text generator based on Markov chains based on any corpus text. Application uses a JSON-RPC protocol.</p>
+<p><strong>mchain</strong> is a Python module providing human readable text generator using Markov chains based on any corpus text.</p>
+
+<h3>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h3>
+
+<pre><code>cd ./mchain
+python setup.py build
+sudo python setup.py install
+</code></pre>
+
+<h3>
+<a name="basic-usage" class="anchor" href="#basic-usage"><span class="octicon octicon-link"></span></a>Basic usage</h3>
+
+<pre><code>&gt;&gt;&gt; from mchain.mchain import Mchain
+&gt;&gt;&gt; mc = Mchain()
+&gt;&gt;&gt; mc.generate('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tristique ipsum nec mauris iaculis, vitae.', 1, 10)
+'Lorem ipsum nec mauris iaculis, vitae.'
+</code></pre>
+
+<p>For best results use generator key equal or longer than 3 and corpus text longer that 5000 characters.</p>
+
+<h3>
+<a name="web-application" class="anchor" href="#web-application"><span class="octicon octicon-link"></span></a>Web application</h3>
+
+<p>As an example I used mchain in a web application using JSON-RPC protocol.</p>
 
 <p>Parameters are:</p>
 
@@ -38,7 +62,17 @@
 <li>crp - string with corpus text</li>
 <li>dgr - degree. Length of generator key</li>
 <li>mwr - maximal length of generated text (in words)</li>
-</ul><p>Sample call:</p>
+</ul><p>Call specification:</p>
+
+<pre><code>{
+    "jsonrpc": "2.0",
+    "method": "generate",
+    "id": "json-rpc-call-d",
+    "params": [crp, dgr, mwr]
+}
+</code></pre>
+
+<p>Sample call:</p>
 
 <pre><code>{
     "jsonrpc": "2.0",
@@ -52,9 +86,9 @@
 }
 </code></pre>
 
-<p>For best results use long corpus text and degree greater than 3. Feel free to experiment with server available for you at URL: <strong><a href="http://idun.pstmd.net:5555">http://idun.pstmd.net:5555</a></strong></p>
+<p>Feel free to experiment with server available for you at URL: <strong><a href="http://idun.pstmd.net:5555">http://idun.pstmd.net:5555</a></strong></p>
 
-<p>Feel free to clone the repository with source code of a generator server and examples of clients written using jsonrpclib and requests modules: <a href="https://github.com/focagrande/mchain">https://github.com/focagrande/mchain</a></p>
+<p>Feel free to clone the repository with source code of a mchain python package, examples of web application and examples of clients written using jsonrpclib and requests modules: <a href="https://github.com/focagrande/mchain">https://github.com/focagrande/mchain</a></p>
       </section>
     </div>
 
